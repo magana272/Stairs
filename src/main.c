@@ -33,12 +33,11 @@ int main(int argc, char *argv[]){
 
   simu->run(simu);
 
-  // int* arrival_times[5] = {1,2,3,4,5};
+  // int* arrival_times[5] = {0,1,3,4,5};
   // int next_jobs(int *arrival_times, int current_time, int quanta, int n, int curr_job);
   // int curr_index = 0;
   // int next;
-  // for(int current_time=0; current_time < 10; current_time++){
-
+  // for(int current_time=0; current_time < 6; current_time++){
   //   printf("Current Time: %d\n", current_time);
   //   printf("curr_index: %d\n", curr_index);
   //   next = next_jobs(arrival_times, current_time, 5, 5, curr_index);
@@ -50,10 +49,7 @@ int main(int argc, char *argv[]){
   //     printf("Job %d at time %d, arrival time: %d\n", next, current_time, arrival_times[curr_index]);
   //     curr_index = next;
   //     curr_index+=1;
-  //     // printf("%d",curr_index);
   //   }
-
-
   // }
 
 

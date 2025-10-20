@@ -27,29 +27,28 @@ void* cross(void* args){
       dirstr = "DOWN";
   };
 
-
   if (dirstr == "UP"){
     sem_wait(&s->___start);
     sem_wait(&s->___SECOND_FLOOR);
     sleep(s->stair_n);
     sem_post(&s->___start);
-    printf("Customer %d going %s stairs at time %d, and arrived at %d \n", ci->id, dirstr, (int)ci->exe_time, (int)ci->arr_time);
     sem_post(&s->___SECOND_FLOOR);
+    printf(">>>>Customer %d going %s stairs at time %d, and arrived at %d \n", ci->id, dirstr, (int)ci->exe_time, (int)ci->arr_time);
     ci->com_time  = ci->exe_time + s->stair_n;
-    printf("Customer %d Completed at time %ld\n", ci->id, (int)ci->com_time);
-    printf("TurnAroundTime: %d \n", (int)ci->com_time - (int)ci->arr_time);
+    printf(">>>>Customer %d Completed at time %ld\n", ci->id, (int)ci->com_time);
+    printf(">>>>TurnAroundTime: %d \n", (int)ci->com_time - (int)ci->arr_time);
 
   }
   else{
     sem_wait(&s->___start);
-    sem_wait(&s->___FIRST_FLOOR);
-    sleep(s->stair_n);
-    sem_post(&s->___FIRST_FLOOR);
-    printf("Customer %d going %s stairs at time %ld\n", ci->id, dirstr, (int)ci->arr_time);
-    sem_post(&s->___SECOND_FLOOR);
+      sem_wait(&s->___SECOND_FLOOR);
+      sleep(s->stair_n);
+      sem_post(&s->___start);
+      sem_post(&s->___SECOND_FLOOR);
+    printf(">>>>Customer %d going %s stairs at time %d, and arrived at %d \n", ci->id, dirstr, (int)ci->exe_time, (int)ci->arr_time);
     ci->com_time  = ci->exe_time + s->stair_n;
-    printf("Customer %d Completed at time %d\n", ci->id, (int)ci->com_time);
-    printf("TurnAroundTime: %ld \n", (int)ci->com_time - (int)ci->arr_time);
+    printf(">>>>Customer %d Completed at time %ld\n", ci->id, (int)ci->com_time);
+    printf(">>>>TurnAroundTime: %d \n", (int)ci->com_time - (int)ci->arr_time);
 
   }
 

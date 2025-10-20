@@ -112,16 +112,14 @@ calculate_avg_tt(struct Simulation_t* self){
 
 void
 run_fn_defualt(Simulation_t* self){
+  printf("Running Simulation\n");
+  printf("Scheduler Start\n");
   struct scheduler_thread_args* args = malloc(sizeof(struct scheduler_thread_args));
+  printf("Customers going UP: %d\n", self->n_going_up);
+  printf("Customers going DOWN: %d\n", self->n_going_down);
   args->quanta = 5;
   args->scheduler = self->scheduler;
   self->scheduler->run(self->scheduler, thread_RoundRobin_scheduler, args);
-  // while(self->completed != self->num_customers){
-  //   if(self->completed !=0){
-
-  //   }
-
-  // }
   pthread_join(self->scheduler->Scheduler_thread, 0);
 
 }

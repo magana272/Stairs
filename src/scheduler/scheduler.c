@@ -24,14 +24,9 @@ Scheduler_t* cr_scheduler(int num_customer, int num_stairs, Simulation_t* simu) 
 void start_scheduler(Scheduler_t* scheduler, void* thread_func, void* thread_args) {
   //
 
-  printf("Statring Scheduler\n");
-  printf("%d\n",scheduler->start_time);
-  printf("%d\n",scheduler->down_queue);
-  printf("%lu\n", scheduler->Scheduler_thread);
-
+  printf("Starting Scheduler\n");
   pthread_create(&(scheduler->Scheduler_thread), NULL, thread_func, thread_args);
   scheduler->start_time = 0;
-  // pthread_join(*scheduler->Scheduler_thread, 0);
 }
 
 void stop_scheduler(Scheduler_t* scheduler) {
@@ -141,13 +136,25 @@ void* thread_RoundRobin_scheduler(void* arg){
   CustomerInfo_t** cd = malloc(scheduler->sim->n_going_down * sizeof(CustomerInfo_t*));
   int* arrival_time = arrival_times_from_scheduler_start(scheduler->sim->n_going_up, 0);
   int* arrival_time_down = arrival_times_from_scheduler_start(scheduler->sim->n_going_down, 0);
-  int current_time = 0;
   int u_idx=0;
   int i_idx=0;
-  int up_n = 0;
-  int down_n =0;
   int next = 0;
   int rounds = 1;
+  printf("Arrival times UP: ");
+  for(int i=0; i < scheduler->sim->n_going_up; i++){
+    printf("%d ", arrival_time[i]);
+  }
+  printf("\n");
+  printf("Arrival times DOWN: ");
+  for(int i=0; i < scheduler->sim->n_going_down; i++){
+    printf("%d ", arrival_time_down[i]);
+  }
+  printf("\n");
+
+
+  int current_time = 0;
+  int indx_at_start =0;
+
   while(scheduler->sim->completed !=  scheduler->sim->num_customers){
     current_time = (rounds -1) * quanta;
     while(current_time == 0 || (current_time % quanta) !=0){
@@ -165,23 +172,24 @@ void* thread_RoundRobin_scheduler(void* arg){
         }
       }
     rounds+=1;
-    current_time = (rounds * quanta)+1;
+    // Downward Customers
+    current_time = (rounds-1) * quanta + 1;
+
+    printf("Round %d Downward Customers\n", rounds);
+    printf("Current Time: %d\n", current_time);
     while((current_time % quanta) % quanta !=0){
       next = next_jobs(arrival_time, current_time,  (rounds * quanta), scheduler->sim->n_going_down, i_idx);
       if (next == -1){
         current_time+=1;
       }else{
-        cd[i_idx] = cr_customer(NULL, arrival_time_down[i_idx], UP);
+        cd[i_idx] = cr_customer(NULL, arrival_time_down[i_idx], DOWN);
         cd[i_idx]->exe_time = current_time;
-        scheduler->sim->stairs->enter_stair(scheduler->sim->stairs,cd[i_idx]);
+        scheduler->sim->stairs->enter_stair(scheduler->sim->stairs, cd[i_idx]);
         pthread_join((pthread_t)cd[i_idx]->tid, 0);
         scheduler->sim->completed+=1;
         i_idx=next;
         i_idx+=1;
       }
     }
-    current_time = (rounds * quanta)+1;
-    }
   }
-
-
+}
