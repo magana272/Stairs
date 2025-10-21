@@ -4,20 +4,21 @@
 #include <stdlib.h>
 #include "customer.h"
 
-
-CustomerInfo_t* cr_customer(void *fn, int arr_time, Direction dir){
-  CustomerInfo_t* cinf = malloc(sizeof(CustomerInfo_t));
-  Customer* customer_id =  (Customer*) malloc(sizeof(Customer));
+CustomerInfo_t *cr_customer(void *fn, int arr_time, Direction dir)
+{
+  CustomerInfo_t *cinf = malloc(sizeof(CustomerInfo_t));
+  Customer *customer_id = (Customer *)malloc(sizeof(Customer));
   cinf->dir = dir;
   cinf->tid = customer_id;
   cinf->arr_time = arr_time;
-  cinf->id = rand() %100;
+  cinf->id = rand() % 100;
   return cinf;
 }
 
-CustomerInfo_t* cr_customer_with_id(void *fn, int arr_time, Direction dir, int id){
-  CustomerInfo_t* cinf = malloc(sizeof(CustomerInfo_t));
-  Customer* customer_id =  (Customer*) malloc(sizeof(Customer));
+CustomerInfo_t *cr_customer_with_id(void *fn, int arr_time, Direction dir, int id)
+{
+  CustomerInfo_t *cinf = malloc(sizeof(CustomerInfo_t));
+  Customer *customer_id = (Customer *)malloc(sizeof(Customer));
   cinf->dir = dir;
   cinf->tid = customer_id;
   cinf->arr_time = arr_time;
@@ -25,9 +26,11 @@ CustomerInfo_t* cr_customer_with_id(void *fn, int arr_time, Direction dir, int i
   return cinf;
 }
 
-CustomerInfo_t** cr_customer_list(int length, Direction dir){
-  CustomerInfo_t** customer_list = malloc(length * sizeof(struct CustomerInfo_t));
-  for(int i=0; i < length; i++){
+CustomerInfo_t **cr_customer_list(int length, Direction dir)
+{
+  CustomerInfo_t **customer_list = malloc(length * sizeof(struct CustomerInfo_t));
+  for (int i = 0; i < length; i++)
+  {
     customer_list[i] = cr_customer(NULL, i, dir);
   }
 
