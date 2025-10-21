@@ -67,7 +67,6 @@ typedef struct CustomerInfo_t {
     int exe_time;           // Execution time
 } CustomerInfo_t;
 
-// Staircase with concurrency control
 typedef struct stairs {
     int stair_n;            // Number of stairs
     Direction current_direction;
