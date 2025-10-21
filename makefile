@@ -23,7 +23,19 @@ $(BUILD_DIR)/%.c.o: %.c
 
 
 sim:
-	gcc -I./src -I./src/stair -I./src/scheduler -I./src/simulation -I./src/utils -I./src/utils/argparser -I./src/utils/queue -I./src/utils/log -I./src/lib -I./src/customer -g  -c src/scheduler/scheduler.c -o build/./src/scheduler/scheduler.c.o
+	gcc -I./src \
+	-I./src/stair \
+	-I./src/scheduler\
+	-I./src/simulation\
+	-I./src/utils\
+	-I./src/utils/argparser\
+	-I./src/utils/queue\
+	-I./src/utils/log\
+	-I./src/lib -I./src/customer\
+	-g\
+	-c\
+	src/scheduler/scheduler.c\
+	-o build/./src/scheduler/scheduler.c.o
 
 
 

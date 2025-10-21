@@ -32,7 +32,6 @@ int schedule(Scheduler_t *scheduler, Direction dir);
 
 void *thread_static_scheduler(void *arg);
 void *thread_FIFO_scheduler(void *arg);
-
 void *simple_scheduler(void *arg);
 void *thread_RoundRobin_scheduler(void *arg);
 void *thread_random_arrival_REALTIME(void *arg);

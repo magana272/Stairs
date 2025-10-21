@@ -79,36 +79,18 @@ int enter_fn(void *stair, CustomerInfo_t *cus)
   return 0;
 }
 
-/**
- * create_stair_case(int stair_n) - Brief description of foobar.
- * @arg: Description of argument of foobar.
- *
- * Longer description of foobar.
- *
- * Return: A Locked Stair Case
- */
 StairCase_t *
 cr_stair(int stair_n)
 {
 
-  /*
-   * This is the preferred style for multi-line
-   * comments in the Linux kernel source code.
-   * Please use it consistently.
-   *
-   * Description:  A column of asterisks on the left side,
-   * with beginning and ending almost-blank lines.
-   */
   StairCase_t *stair = malloc(sizeof(StairCase_t));
   stair->stair_n = stair_n;
   stair->time = 0;
   stair->completed = 0;
   stair->current_direction = NONE;
-  stair->top_q = create_queue(100);
-  stair->bottom_q = create_queue(100);
+  // stair->top_q = create_queue(100);
+  // stair->bottom_q = create_queue(100);
   sem_init(&stair->___start, 0, 1);
-  sem_init(&stair->___SECOND_FLOOR, 0, 1);
-  sem_init(&stair->___FIRST_FLOOR, 0, 1);
   stair->enter_stair = enter_fn;
   return stair;
 }
