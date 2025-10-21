@@ -12,7 +12,6 @@ typedef struct enterArgs
   CustomerInfo_t *ci;
 } enterArgs;
 
-
 void change_direction(StairCase_t *s, Direction dir, CustomerInfo_t *ci)
 {
   if (dir == UP)
@@ -41,18 +40,22 @@ void *cross(void *args)
   {
     s->time = ci->arr_time;
   }
-  if (s->current_direction == NONE) {
+  if (s->current_direction == NONE)
+  {
     s->current_direction = ci->dir;
     ci->exe_time = s->time;
     ci->com_time = ci->exe_time + s->stair_n;
-  }else if (ci->dir == UP && s->current_direction == DOWN)
+  }
+  else if (ci->dir == UP && s->current_direction == DOWN)
   {
     change_direction(s, UP, ci);
   }
   else if (ci->dir == DOWN && s->current_direction == UP)
   {
     change_direction(s, DOWN, ci);
-  }else{
+  }
+  else
+  {
     s->time += 1;
     ci->exe_time = s->time;
     ci->com_time = ci->exe_time + s->stair_n;
