@@ -5,29 +5,17 @@
 // Author.h
 
 typedef struct init_group {
-const * created_by = "Manuel Magana";
-const * ProjectName = "stair";
-const * groupname = "init_group";
+const char* created_by = "Manuel Magana";
+const char* ProjectName = "stair";
+const char* groupname = "init_group";
+const char* description = " A staircase simulator. Schedulers passes customers to stairs. Schedulers in charge of organizing customers. Stairs in charges of moving customers and time.";
 
 }init_group;
 
 ```
 # Overview
 ```text
-
-1. Your group number, and the name of the students in your group
-
-      Group Name: init_group
-      Group Members: Manuel
-
-2. A short description of the project.
-
-    A staircase simulator. Schedulers passes customers to stairs. Schedulers in charge of organizing customers. Stairs in charges of moving customers and time.
-
-
-3. Explain how you implemented the project:
-
-
+  About
     There are a lot of functions implemented. However the main function and data structures
     are listed down below.
 
@@ -35,22 +23,21 @@ const * groupname = "init_group";
     We have a stair that allow for customers to move in the same direction. The stairs prevents
     Customers from moving in opposite directions.
 
-4. Explain how you tested your project and list the test cases you used.
+  Testing
 
   - Simpler functions were tested with unit tests.
   - Tested classes were interacting as expected. i.e: Allowing interchangeability of the the scheduler types.
   - Tested various N and S.
 
-5. Explain how you guarantee that your code is free of deadlock and starvation.
+  Guarantee code is free of deadlock and starvation.
   - This is enforced by the scheduler. The scheduler waits for customers moving up to finish before allowing customers of the opposite direction to pass.
   - Starvation is prevented also by the scheduler. The interval or quanta is chosen to be 5. This makes sure that one direction isn't starved.
 
 
-6. Find the average Turnaround time of the examples you run, and explain using these performance measures how you adjusted your project to make your design “efficient”.
-
-  - Provided below in Example output section.
+  Turnaround time
 
   - ( ROUND_ROBIN: Creating Simulation with 10 customers and 5 stairs ) -- This is my efficient solution.
+  - Provided below in Example output section.
   - FIFO is included to demonstrate a bad solution.
 
 ```
