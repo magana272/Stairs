@@ -22,35 +22,26 @@ int main(int argc, char *argv[]){
   printf("n: %d, s: %d\n", n, s);
 
 
-  // Simulation_t* sim = cr_simu(n, s);
-  // sim->run(sim);
-
-
-  // Validate Scheduler Works
-  //
-  Simulation_t* simu = default_sim(n,s, run_fn_defualt, ROUND_ROBIN);
-
-
+  printf("\n\n");
+  printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+  printf("ROUND_ROBIN: Creating Simulation with %d customers and %d stairs\n", n, s);
+  printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+  Simulation_t* simu = default_sim(n,s, run_fn_default, ROUND_ROBIN);
+  simu->scheduler->quanta = 5;
   simu->run(simu);
-
-  // int* arrival_times[5] = {0,1,3,4,5};
-  // int next_jobs(int *arrival_times, int current_time, int quanta, int n, int curr_job);
-  // int curr_index = 0;
-  // int next;
-  // for(int current_time=0; current_time < 6; current_time++){
-  //   printf("Current Time: %d\n", current_time);
-  //   printf("curr_index: %d\n", curr_index);
-  //   next = next_jobs(arrival_times, current_time, 5, 5, curr_index);
-  //   if(next==-1){
-  //     printf("No job at time %d\n", current_time);
-
-  //   }
-  //   else{
-  //     printf("Job %d at time %d, arrival time: %d\n", next, current_time, arrival_times[curr_index]);
-  //     curr_index = next;
-  //     curr_index+=1;
-  //   }
-  // }
+  printf("\t==============================\n");
+  simu->calatt(simu);
+  printf("\t==============================\n");
+  printf("\n\n");
+  printf("++++++++++++++++++++++++++++++++++++\n");
+  printf("FIFO: Creating Simulation with %d customers and %d stairs\n", n, s);
+  printf("++++++++++++++++++++++++++++++++++++\n");
+  simu = default_sim(n,s, run_fn_default, FIFO);
+  simu->scheduler->quanta = 5;
+  simu->run(simu);
+  printf("==============================\n");
+  simu->calatt(simu);
+  printf("==============================\n");
 
 
 

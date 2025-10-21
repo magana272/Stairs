@@ -18,6 +18,7 @@ typedef struct scheduler{
   Queue* up_queue;
   Queue* down_queue;
   void (*run)();
+  int quanta;
 } Scheduler_t;
 
 struct scheduler_thread_args {
@@ -34,7 +35,7 @@ int schedule(Scheduler_t* scheduler, Direction dir);
 void* thread_static_scheduler(void* arg);
 void* thread_FIFO_scheduler(void* arg);
 
-
+void* simple_scheduler(void* arg);
 void* thread_RoundRobin_scheduler(void* arg);
 void *thread_random_arrival_REALTIME(void* arg);
 int* arrival_times(int n);

@@ -31,11 +31,10 @@ Simulation_t* cr_simu_test(void);
 Simulation_t* cr_simu(int num_customer, int num_stairs);
 Simulation_t* cr_simu_bi_dir(int num_customer, int num_stairs);
 Simulation_t* default_sim(int number, int stair, void(*run_run)(Simulation_t*), schedule_type st);
-// Types of schedulers
 
 
 void run_fn(Simulation_t* self);
-void run_fn_defualt(Simulation_t* self);
-void print_adder(struct Simulation_t* self);
+void run_fn_default(Simulation_t* self);
+void run_fn_custom_sim(Simulation_t* self, int quanta);
 int calculate_avg_tt(struct Simulation_t* self);
 #endif

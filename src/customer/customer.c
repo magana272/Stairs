@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include "customer.h"
 
-// typedef pthread_t Customer;
 
 CustomerInfo_t* cr_customer(void *fn, int arr_time, Direction dir){
   CustomerInfo_t* cinf = malloc(sizeof(CustomerInfo_t));
@@ -13,6 +12,16 @@ CustomerInfo_t* cr_customer(void *fn, int arr_time, Direction dir){
   cinf->tid = customer_id;
   cinf->arr_time = arr_time;
   cinf->id = rand() %100;
+  return cinf;
+}
+
+CustomerInfo_t* cr_customer_with_id(void *fn, int arr_time, Direction dir, int id){
+  CustomerInfo_t* cinf = malloc(sizeof(CustomerInfo_t));
+  Customer* customer_id =  (Customer*) malloc(sizeof(Customer));
+  cinf->dir = dir;
+  cinf->tid = customer_id;
+  cinf->arr_time = arr_time;
+  cinf->id = id;
   return cinf;
 }
 
